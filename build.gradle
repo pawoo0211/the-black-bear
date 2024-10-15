@@ -32,8 +32,8 @@ ext {
 
 dependencies {
 //	implementation 'org.springframework.boot:spring-boot-starter-amqp'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+//	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+//	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
@@ -88,4 +88,40 @@ hibernate {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+subprojects { // 각 모듈에 적용할 공통 설정
+	apply plugin: 'java'
+	apply plugin: 'org.springframework.boot'
+	apply plugin: 'io.spring.dependency-management'
+
+	sourceCompatibility = '21'
+
+	repositories {
+		mavenCentral()
+	}
+
+	dependencies {
+		implementation 'org.springframework.boot:spring-boot-starter-web'
+		implementation 'org.springframework.boot:spring-boot-starter'
+
+		testImplementation 'org.springframework.boot:spring-boot-starter-test'
+		testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
+		testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+		compileOnly 'org.projectlombok:lombok'
+		annotationProcessor 'org.projectlombok:lombok'
+	}
+
+	tasks.named('bootJar') {
+		enabled = false
+	}
+
+	tasks.named('jar') {
+		enabled = true
+	}
+
+	tasks.named('test') {
+		useJUnitPlatform()
+	}
 }
