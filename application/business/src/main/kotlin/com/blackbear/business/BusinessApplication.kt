@@ -1,4 +1,4 @@
-package com.blackbare.com.blackbear.business
+package com.blackbear.business
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

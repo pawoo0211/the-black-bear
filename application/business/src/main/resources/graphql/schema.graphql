@@ -1,0 +1,39 @@
+scalar LocalDate
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Query {
+    _empty: String  # 임시
+}
+
+type Mutation {
+    # 가계부 등록
+    createTransaction(input: CreateTransactionInput!): Transaction!
+}
+
+input CreateTransactionInput {
+    type: TransactionType!     # INCOME or EXPENSE
+    category: String!          # 예: "식비", "교통비"
+    amount: Int!               # 금액 (단위: 원)
+    date: LocalDate!            # 지출/수입 발생일
+    memo: String               # 메모 (옵션)
+}
+
+type Transaction {
+    id: ID!
+    type: TransactionType!
+    category: String!
+    amount: Int!
+    date: LocalDate!
+    memo: String
+    createdAt: LocalDate!
+    updatedAt: LocalDate!
+}
+
+enum TransactionType {
+    INCOME
+    EXPENSE
+}

@@ -1,0 +1,10 @@
+dgs:
+  graphql:
+    graphiql:
+      enabled: false
+    schema-locations: classpath*:graphql/*.graphql*
+    extensions:
+      scalars:
+        time-dates:
+          enabled: false
+    logging: true

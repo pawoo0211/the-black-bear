@@ -14,15 +14,9 @@ dependencies {
     // Spring Boot
     implementation("org.springframework.boot:spring-boot-starter-web")
 
-    // Spring Security
-    implementation("org.springframework.boot:spring-boot-starter-security")
-
     // Spring Cloud
     implementation("org.springframework.cloud:spring-cloud-starter-stream-kafka")
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
-
-    // implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
-    // implementation("org.springframework.boot:spring-boot-starter-logging")
 
     // GraphQL / Dgs
     implementation("com.netflix.graphql.dgs:graphql-dgs-extended-scalars")
@@ -55,6 +49,9 @@ dependencies {
 //    implementation("org.apache.commons:commons-dbcp2")
 //    implementation("org.postgresql:postgresql")
 
+    // Logging
+    // implementation("org.springframework.boot:spring-boot-starter-logging")
+
     // Kotest
     testImplementation("io.kotest:kotest-runner-junit5") // Kotest JUnit5 integration
     testImplementation("io.kotest:kotest-assertions-core")
@@ -73,7 +70,7 @@ tasks.withType<com.netflix.graphql.dgs.codegen.gradle.GenerateJavaTask> {
             mutableListOf(
                     "$projectDir/src/main/resources/graphql",
             )
-    packageName = "com.commerce.proxy.shopping.infrastructure.dto" // The package name to use to generate sources
+    //packageName = "com.commerce.proxy.shopping.infrastructure.dto"
     typeMapping =
             mutableMapOf(
                     "Long" to "kotlin.Long",
